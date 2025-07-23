@@ -2,7 +2,7 @@ import campaignABI from './abis/Campaign.json';
 
 export function getCampaignConfig(address: string) {
   return {
-    address: address,
+    address: address as `0x${string}`,
     abi: campaignABI,
   };
 }
