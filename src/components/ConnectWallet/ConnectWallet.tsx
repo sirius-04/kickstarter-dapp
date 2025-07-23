@@ -1,6 +1,6 @@
 'use client'
 
-import Button from '@/components/Button/Button';
+import { Button } from '@/components/ui/button';
 import { useConnect, useDisconnect, useAccount } from 'wagmi';
 
 export default function ConnectWallet() {
@@ -10,12 +10,12 @@ export default function ConnectWallet() {
 
   let content = (
     <>
-      <h1 className="font-semibold">Connect Wallet</h1>
+      <h1>Connect Wallet</h1>
       {connectors.map((connector) => (
         <Button
-          variant='primary'
           key={connector.id}
-          onClick={() => connect({ connector })}>
+          onClick={() => connect({ connector })}
+          className='m-2'>
           {connector.name}
         </Button>
       ))}
@@ -26,7 +26,7 @@ export default function ConnectWallet() {
     content = (
       <>
         <p>Connected: {address}</p>
-        <Button variant='danger' onClick={() => disconnect()}>Disconnect</Button>
+        <Button variant='destructive' onClick={() => disconnect()}>Disconnect</Button>
       </>
     );
   }
