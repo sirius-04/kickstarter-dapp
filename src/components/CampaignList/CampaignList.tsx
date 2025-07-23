@@ -1,16 +1,9 @@
 'use client';
 
-import { useReadContract } from 'wagmi';
-import { campaignFactoryConfig } from '@/lib/contracts';
+import { useDeployedCampaigns } from "@/lib/hooks/useDeployedCampaigns";
 
 export default function CampaignList() {
-  const { data, isPending, error } = useReadContract({
-    abi: campaignFactoryConfig.abi,
-    address: campaignFactoryConfig.address,
-    functionName: 'getDeployedCampaigns',
-  });
-
-  const campaigns = data as `0x${string}`[] | undefined;
+  const { campaigns, isPending, error } = useDeployedCampaigns();
 
   if (isPending) return <p>Loading...</p>;
   if (error) return <p style={{ color: 'red' }}>Error: {error.message}</p>;
