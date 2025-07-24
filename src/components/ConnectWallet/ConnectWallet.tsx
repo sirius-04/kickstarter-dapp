@@ -7,7 +7,6 @@ export default function ConnectWallet() {
   const { open, close } = useAppKit();
 
   return (
-    // <Button onClick={() => open()}>Connect</Button>
     <appkit-button></appkit-button>
   );
 }

@@ -3,7 +3,7 @@ import { Plus } from "lucide-react";
 
 export default function CreateCampaign() {
   return (
-    <Button size='sm'>
+    <Button variant="secondary" size='sm'>
       <Plus /> Create Campaign
     </Button>
   )
