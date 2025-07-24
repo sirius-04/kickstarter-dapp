@@ -6,10 +6,6 @@ export default function Home() {
   return (
     <>
       <ConnectWallet />
-      <div>
-        <CampaignList />
-        <CreateCampaign></CreateCampaign>
-      </div>
     </>
   );
 }

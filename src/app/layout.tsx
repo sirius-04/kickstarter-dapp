@@ -1,42 +1,38 @@
-  import type { Metadata } from "next";
-  import { Geist, Geist_Mono } from "next/font/google";
-  import "./globals.css";
-  import { Providers } from "@/providers";
-  import { getConfig } from "@/lib/config";
-  import { headers } from 'next/headers';
-  import { cookieToInitialState } from "wagmi";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { headers } from 'next/headers';
+import ContextProvider from '@/context';
 
-  const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-  });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
 
-  const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-  });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
 
-  export const metadata: Metadata = {
-    title: "KickStarter",
-    description: "KickStarter clone dapp",
-  };
+export const metadata: Metadata = {
+  title: "KickStarter",
+  description: "KickStarter clone dapp",
+};
 
-  export default async function RootLayout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    const headerList = await headers();
-    const cookieHeader = headerList.get('cookie');
-    const initialState = cookieToInitialState(getConfig(), cookieHeader);
+export default async function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
 
-    return (
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <Providers initialState={initialState}>
-            {children}
-          </Providers>
-        </body>
-      </html>
-    );
-  }
+  const headersObj = await headers();
+  const cookies = headersObj.get('cookie');
+
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ContextProvider cookies={cookies}>{children}</ContextProvider>
+      </body>
+    </html>
+  );
+}
