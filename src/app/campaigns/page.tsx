@@ -34,7 +34,7 @@ export default function Campaigns() {
     const promise = writeContract(config, {
       ...campaignFactoryConfig,
       functionName: 'createCampaign',
-      args: [data.amountInWei],
+      args: [BigInt(data.amountInWei)],
     });
 
     toast.promise(promise,
@@ -49,7 +49,6 @@ export default function Campaigns() {
 
     refetch();
   }
-
 
   return (
     <>

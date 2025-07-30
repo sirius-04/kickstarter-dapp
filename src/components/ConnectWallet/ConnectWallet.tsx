@@ -1,16 +1,19 @@
 'use client'
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAppKitAccount } from "@reown/appkit/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 export default function ConnectWallet() {
   const { isConnected } = useAppKitAccount();
   const router = useRouter();
+  const wasConnected = useRef(false);
 
   useEffect(() => {
     if (isConnected) {
-      router.push('/campaigns');
+      wasConnected.current = true;
+    } else if (wasConnected.current) {
+      router.push('/');
     }
   }, [isConnected, router]);
 
