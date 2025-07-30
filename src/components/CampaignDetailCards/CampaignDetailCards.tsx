@@ -17,7 +17,7 @@ export default function CampaignDetailCards({ address }: { address: `0x${string}
     functionName: 'getSummary'
   });
 
-  
+
   let balance: string | undefined
   let minimumContribution: string | undefined
   let requestsCount: string | undefined
@@ -46,30 +46,45 @@ export default function CampaignDetailCards({ address }: { address: `0x${string}
     <>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Campaign Balance</CardDescription>
+          <CardDescription>Campaign Balance (ether)</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {balance}
           </CardTitle>
         </CardHeader>
-      </Card><Card className="@container/card">
+      </Card>
+
+      <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Minimum Contribution</CardDescription>
+          <CardDescription>Minimum Contribution (wei)</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {minimumContribution}
           </CardTitle>
         </CardHeader>
-      </Card><Card className="@container/card">
+      </Card>
+
+      <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Pending Requests</CardDescription>
+          <CardDescription>Number of Requests</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {requestsCount}
           </CardTitle>
         </CardHeader>
-      </Card><Card className="@container/card">
+      </Card>
+
+      <Card className="@container/card">
         <CardHeader>
-          <CardDescription>Contributors</CardDescription>
+          <CardDescription>Number of Approvers</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
             {approversCount}
+          </CardTitle>
+        </CardHeader>
+      </Card>
+
+      <Card className="@container/card">
+        <CardHeader>
+          <CardDescription>Manager</CardDescription>
+          <CardTitle className="text-2xl font-semibold break-all tabular-nums @[250px]/card:text-3xl">
+            {managerAddress}
           </CardTitle>
         </CardHeader>
       </Card>
