@@ -13,6 +13,7 @@ import { writeContract } from "@wagmi/core";
 import { campaignFactoryConfig } from "@/lib/contracts";
 import { config } from "@/config";
 import { useDeployedCampaigns } from "@/lib/hooks/useDeployedCampaigns";
+import CampaignLayout from "@/components/CampaignLayout/CampaignLayout";
 
 const FormSchema = z.object({
   amountInWei: z.string()
@@ -51,39 +52,34 @@ export default function Campaigns() {
   }
 
   return (
-    <>
-      <h2>Open Campaigns</h2>
-      <div className="flex justify-between gap-6 py-2">
-        <div className="flex-3">
-          <CampaignList />
-        </div>
-
-        <div className="flex-1">
-          <div className="flex justify-end">
-            <PopOutDialog
-              triggerComponent={<AddButton variant="secondary" label="Create Campaign" />}
-              title="Create Campaign"
-              form={form}
-              onSubmit={form.handleSubmit(onSubmit)}
-            >
-              <FormField
-                control={form.control}
-                name="amountInWei"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Minimum Contribution</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g. 10000" {...field} />
-                    </FormControl>
-                    <FormDescription>Enter amount in Wei</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </PopOutDialog>
-          </div>
-        </div>
+    <CampaignLayout title="Open Campaigns">
+      <div>
+        <CampaignList />
       </div>
-    </>
+
+      <div>
+        <PopOutDialog
+          triggerComponent={<AddButton variant="secondary" label="Create Campaign" />}
+          title="Create Campaign"
+          form={form}
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <FormField
+            control={form.control}
+            name="amountInWei"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Minimum Contribution</FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. 10000" {...field} />
+                </FormControl>
+                <FormDescription>Enter amount in Wei</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </PopOutDialog>
+      </div>
+    </CampaignLayout >
   );
 }

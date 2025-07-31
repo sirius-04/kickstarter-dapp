@@ -13,6 +13,7 @@ import { useWriteContract, useReadContract } from "wagmi";
 // import { writeContract } from '@wagmi/core';
 import { getCampaignConfig } from "@/lib/contracts";
 import { CardGrid } from '@/components/CardGrid/CardGrid';
+import CampaignLayout from '@/components/CampaignLayout/CampaignLayout';
 // import { config } from '@/config';
 
 const FormSchema = z.object({
@@ -56,38 +57,34 @@ export default function CampaignDetailsClient({ address }: { address: `0x${strin
   }
 
   return (
-    <>
-      <h1>Campaign {address}</h1>
+    <CampaignLayout title={`Campaign ${address}`}>
+      <CardGrid>
+        <CampaignDetailCards address={address} />
+      </CardGrid>
 
-      <div className="grid grid-cols-1 gap-6 py-4 sm:grid-cols-2 sm:gap-2">
-        <CardGrid>
-          <CampaignDetailCards address={address} />
-        </CardGrid>
-
-        <div className='flex justify-center'>
-          <PopOutDialog
-            triggerComponent={<AddButton variant="secondary" label="Contribute" />}
-            title="Contribute to Campaign"
-            form={form}
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <FormField
-              control={form.control}
-              name="amountInWei"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Minimum contribution to be approvers: {data ? data.toString() : ''} Wei</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. 10000" {...field} />
-                  </FormControl>
-                  <FormDescription>Enter amount in Wei</FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </PopOutDialog>
-        </div>
+      <div className='flex justify-center'>
+        <PopOutDialog
+          triggerComponent={<AddButton variant="secondary" label="Contribute" />}
+          title="Contribute to Campaign"
+          form={form}
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <FormField
+            control={form.control}
+            name="amountInWei"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Minimum contribution to be approvers: {data ? data.toString() : ''} Wei</FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. 10000" {...field} />
+                </FormControl>
+                <FormDescription>Enter amount in Wei</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </PopOutDialog>
       </div>
-    </>
+    </CampaignLayout >
   )
 }

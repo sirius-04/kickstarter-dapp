@@ -3,10 +3,12 @@
 import {
   Card,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { getCampaignConfig } from "@/lib/contracts";
+import Link from "next/link";
 import { useReadContract } from "wagmi";
 
 export default function CampaignDetailCards({ address }: { address: `0x${string}`; }) {
@@ -69,6 +71,11 @@ export default function CampaignDetailCards({ address }: { address: `0x${string}
             {requestsCount}
           </CardTitle>
         </CardHeader>
+        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+          <Link href={`/campaigns/${address}/requests`} className="text-muted-foreground underline-offset-4 hover:underline">
+            View Requests
+          </Link>
+        </CardFooter>
       </Card>
 
       <Card className="@container/card">
