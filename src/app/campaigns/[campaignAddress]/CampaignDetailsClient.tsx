@@ -3,18 +3,16 @@
 import AddButton from '@/components/AddButton/AddButton';
 import CampaignDetailCards from '@/components/CampaignDetailCards/CampaignDetailCards';
 import PopOutDialog from '@/components/PopOutDialog/PopOutDialog';
-import { FormField, FormItem, FormLabel, FormControl, FormDescription, FormMessage } from '@/components/ui/form';
+import { FormField, FormItem, FormLabel, FormControl, FormDescription } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { useWriteContract, useReadContract } from "wagmi";
-// import { writeContract } from '@wagmi/core';
 import { getCampaignConfig } from "@/lib/contracts";
 import { CardGrid } from '@/components/CardGrid/CardGrid';
 import CampaignLayout from '@/components/CampaignLayout/CampaignLayout';
-// import { config } from '@/config';
 
 const FormSchema = z.object({
   amountInWei: z.string()
@@ -79,7 +77,6 @@ export default function CampaignDetailsClient({ address }: { address: `0x${strin
                   <Input placeholder="e.g. 10000" {...field} />
                 </FormControl>
                 <FormDescription>Enter amount in Wei</FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />

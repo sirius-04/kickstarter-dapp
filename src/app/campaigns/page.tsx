@@ -4,7 +4,7 @@ import CampaignList from "@/components/CampaignList/CampaignList";
 import AddButton from "@/components/AddButton/AddButton";
 import PopOutDialog from "@/components/PopOutDialog/PopOutDialog";
 import { Input } from "@/components/ui/input";
-import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { FormControl, FormDescription, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -57,7 +57,7 @@ export default function Campaigns() {
         <CampaignList />
       </div>
 
-      <div>
+      <div className="flex justify-end">
         <PopOutDialog
           triggerComponent={<AddButton variant="secondary" label="Create Campaign" />}
           title="Create Campaign"
@@ -74,7 +74,6 @@ export default function Campaigns() {
                   <Input placeholder="e.g. 10000" {...field} />
                 </FormControl>
                 <FormDescription>Enter amount in Wei</FormDescription>
-                <FormMessage />
               </FormItem>
             )}
           />
