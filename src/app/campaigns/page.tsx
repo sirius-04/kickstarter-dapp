@@ -57,7 +57,7 @@ export default function Campaigns() {
         <CampaignList />
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex justify-center">
         <PopOutDialog
           triggerComponent={<AddButton variant="secondary" label="Create Campaign" />}
           title="Create Campaign"

@@ -56,9 +56,11 @@ export default function CampaignDetailsClient({ address }: { address: `0x${strin
 
   return (
     <CampaignLayout title={`Campaign ${address}`}>
-      <CardGrid>
-        <CampaignDetailCards address={address} />
-      </CardGrid>
+      <div>
+        <CardGrid>
+          <CampaignDetailCards address={address} />
+        </CardGrid>
+      </div>
 
       <div className='flex justify-center'>
         <PopOutDialog

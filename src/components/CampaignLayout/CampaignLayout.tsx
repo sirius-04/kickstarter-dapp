@@ -2,7 +2,7 @@ export default function CampaignLayout({ children, title }: { children: React.Re
   return (
     <section>
       {title && <h1>{title}</h1>}
-      <div className="grid grid-cols-1 gap-6 py-4 sm:grid-cols-2 sm:gap-2">
+      <div className="grid grid-cols-[1fr_auto] py-4 sm:grid-cols-[auto-fit,minmax(300px,1fr)] gap-8">
         {children}
       </div>
     </section>

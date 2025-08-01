@@ -1,7 +1,7 @@
 import CampaignDetailsClient from "./CampaignDetailsClient";
 
-export default function CampaignDetailsPage({ params }: { params: { campaignAddress: `0x${string}` }; }) {
+export default async function CampaignDetailsPage({ params }: { params: Promise<{ campaignAddress: `0x${string}` }>; }) {
   return (
-    <CampaignDetailsClient address={params.campaignAddress} />
+    <CampaignDetailsClient address={(await params).campaignAddress} />
   );
 }

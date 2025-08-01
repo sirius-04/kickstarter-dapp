@@ -3,6 +3,7 @@
 import AddButton from "@/components/AddButton/AddButton";
 import CampaignLayout from "@/components/CampaignLayout/CampaignLayout";
 import PopOutDialog from "@/components/PopOutDialog/PopOutDialog";
+import RequestsTable from "@/components/RequestsTable/RequestsTable";
 import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { isAddress, isAddressEqual, parseEther } from "viem";
+import { isAddressEqual, parseEther } from "viem";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import z from "zod";
 
@@ -38,7 +39,7 @@ export default function RequestsPage() {
   const campaignConfig = getCampaignConfig(address);
 
   const { writeContractAsync } = useWriteContract();
-
+  
   const user = useAccount();
   const { data } = useReadContract({
     ...campaignConfig,
@@ -78,7 +79,7 @@ export default function RequestsPage() {
   return (
     <CampaignLayout title={`Requests of Campaign ${address}`}>
       <div>
-
+        <RequestsTable address={address} />
       </div>
 
       {isManager && (
